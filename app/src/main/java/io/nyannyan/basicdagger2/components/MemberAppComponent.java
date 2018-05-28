@@ -1,6 +1,9 @@
-package io.nyannyan.basicdagger2;
+package io.nyannyan.basicdagger2.components;
 
 import dagger.Component;
+import io.nyannyan.basicdagger2.MainActivity;
+import io.nyannyan.basicdagger2.modules.DateTimeModule;
+import io.nyannyan.basicdagger2.modules.MemberDataModule;
 import javax.inject.Singleton;
 
 /**

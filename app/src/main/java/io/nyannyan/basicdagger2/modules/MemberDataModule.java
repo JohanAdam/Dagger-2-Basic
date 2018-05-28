@@ -1,10 +1,12 @@
-package io.nyannyan.basicdagger2;
+package io.nyannyan.basicdagger2.modules;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import dagger.Module;
 import dagger.Provides;
+import io.nyannyan.basicdagger2.models.NetworkManager;
+import io.nyannyan.basicdagger2.models.MemberDataManager;
 import javax.inject.Named;
 import javax.inject.Singleton;
 

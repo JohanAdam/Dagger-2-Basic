@@ -1,6 +1,13 @@
 package io.nyannyan.basicdagger2;
 
 import android.app.Application;
+import io.nyannyan.basicdagger2.components.DaggerDetailActivityComponent;
+import io.nyannyan.basicdagger2.components.DaggerMemberAppComponent;
+import io.nyannyan.basicdagger2.components.DetailActivityComponent;
+import io.nyannyan.basicdagger2.components.MemberAppComponent;
+import io.nyannyan.basicdagger2.modules.DateTimeModule;
+import io.nyannyan.basicdagger2.modules.MemberDataModule;
+import io.nyannyan.basicdagger2.modules.MessagesModule;
 
 public class App extends Application {
 
@@ -9,6 +16,11 @@ public class App extends Application {
   private static App app;
   //References to the interface
   private MemberAppComponent memberAppComponent;
+  private DetailActivityComponent detailActivityComponent;
+
+  public static App getApp() {
+    return app;
+  }
 
   @Override
   public void onCreate() {
@@ -38,14 +50,20 @@ public class App extends Application {
         .dateTimeModule(new DateTimeModule())
         .build();
 
-  }
+    //Intialized other component
+    detailActivityComponent = DaggerDetailActivityComponent.builder()
+        .memberAppComponent(memberAppComponent) //Define parent component
+        .messagesModule(new MessagesModule())
+        .build();
 
-  public static App getApp() {
-    return app;
   }
 
   //From MainActivity > get instance of the application > get interface by using the instance
   public MemberAppComponent getMemberAppComponent() {
     return memberAppComponent;
+  }
+
+  public DetailActivityComponent getDetailActivityComponent() {
+    return detailActivityComponent;
   }
 }

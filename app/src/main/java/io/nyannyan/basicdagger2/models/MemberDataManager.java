@@ -1,4 +1,4 @@
-package io.nyannyan.basicdagger2;
+package io.nyannyan.basicdagger2.models;
 
 import android.content.SharedPreferences;
 import java.util.ArrayList;

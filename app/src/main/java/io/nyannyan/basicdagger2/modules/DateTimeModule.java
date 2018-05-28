@@ -1,4 +1,4 @@
-package io.nyannyan.basicdagger2;
+package io.nyannyan.basicdagger2.modules;
 
 import dagger.Module;
 import dagger.Provides;

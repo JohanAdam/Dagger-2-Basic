@@ -1,5 +1,6 @@
 package io.nyannyan.basicdagger2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.nyannyan.basicdagger2.models.MemberDataManager;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
   //Used Named annotation to choose dependency provided if there is two same dependency that use same object
   @Inject @Named("local")
   MemberDataManager memberDataManager;
+
   @Inject @Named ("dd-MMM-yy")
   String dateTimeModule;
 
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
   @OnClick(R.id.btn_submit)
   public void onClick() {
     if (editText.getText().equals("")) {
-      Toast.makeText(MainActivity.this, "Dat is empty", Toast.LENGTH_SHORT).show();
+      Toast.makeText(MainActivity.this, "Oii Text is empty", Toast.LENGTH_SHORT).show();
     } else {
       String input = editText.getText().toString();
 //          String result = new MemberDataManager().checkMemberStatus(input);
@@ -72,7 +75,15 @@ public class MainActivity extends AppCompatActivity {
       //#3A
       String result = memberDataManager.checkMemberStatus(input);
 //      Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
-      tvText.setText(result);
+
+      if (result.equals("Access Denied")){
+        tvText.setText(result);
+      } else {
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        intent.putExtra("result", result);
+        startActivity(intent);
+      }
+
     }
   }
 }
