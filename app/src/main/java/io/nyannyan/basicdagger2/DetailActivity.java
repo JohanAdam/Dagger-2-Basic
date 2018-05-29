@@ -7,6 +7,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.nyannyan.basicdagger2.models.MessageGenerator;
+import io.nyannyan.basicdagger2.modules.MessagesModule;
 import javax.inject.Inject;
 
 public class DetailActivity extends AppCompatActivity {
@@ -25,7 +26,9 @@ public class DetailActivity extends AppCompatActivity {
     setContentView(R.layout.activity_detail);
     ButterKnife.bind(this);
 
-    App.getApp().getDetailActivityComponent().inject(this);
+    App.getApp().getMemberAppComponent()
+        .newDetailActivityComponent(new MessagesModule())
+        .inject(this);
 
     tvWelcome.setText(getIntent().getStringExtra("result"));
 

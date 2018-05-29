@@ -1,13 +1,10 @@
 package io.nyannyan.basicdagger2;
 
 import android.app.Application;
-import io.nyannyan.basicdagger2.components.DaggerDetailActivityComponent;
 import io.nyannyan.basicdagger2.components.DaggerMemberAppComponent;
-import io.nyannyan.basicdagger2.components.DetailActivityComponent;
 import io.nyannyan.basicdagger2.components.MemberAppComponent;
 import io.nyannyan.basicdagger2.modules.DateTimeModule;
 import io.nyannyan.basicdagger2.modules.MemberDataModule;
-import io.nyannyan.basicdagger2.modules.MessagesModule;
 
 public class App extends Application {
 
@@ -16,7 +13,7 @@ public class App extends Application {
   private static App app;
   //References to the interface
   private MemberAppComponent memberAppComponent;
-  private DetailActivityComponent detailActivityComponent;
+//  private DetailActivityComponent detailActivityComponent;
 
   public static App getApp() {
     return app;
@@ -48,13 +45,14 @@ public class App extends Application {
     memberAppComponent = DaggerMemberAppComponent.builder()
         .memberDataModule(new MemberDataModule(getApplicationContext()))
         .dateTimeModule(new DateTimeModule())
+//        .messagesModule(new MessagesModule())
         .build();
 
-    //Intialized other component
-    detailActivityComponent = DaggerDetailActivityComponent.builder()
-        .memberAppComponent(memberAppComponent) //Define parent component
-        .messagesModule(new MessagesModule())
-        .build();
+    //Intialized other component (With activity scope)
+//    detailActivityComponent = DaggerDetailActivityComponent.builder()
+//        .memberAppComponent(memberAppComponent) //Define parent component
+//        .messagesModule(new MessagesModule())
+//        .build();
 
   }
 
@@ -63,7 +61,7 @@ public class App extends Application {
     return memberAppComponent;
   }
 
-  public DetailActivityComponent getDetailActivityComponent() {
-    return detailActivityComponent;
-  }
+//  public DetailActivityComponent getDetailActivityComponent() {
+//    return detailActivityComponent;
+//  }
 }
