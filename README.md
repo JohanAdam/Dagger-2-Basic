@@ -1,4 +1,4 @@
-# DaggerBasic
+# Dagger 2 Basic
 Dagger 2 Basic
 
 # Android Dagger 2 Demo
